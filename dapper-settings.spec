@@ -1,6 +1,6 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
-Version:    24
+Version:    25
 Release:    1
 
 Group:      System Environment/Base
@@ -53,5 +53,8 @@ dconf update
 %{_sysconfdir}/profile.d/man.sh
 
 %changelog
+* Fri Nov  4 2016 Matthew Ruffell <msr50@uclive.ac.nz>
+- Updating for F25
+
 * Wed Oct 19 2016 Matthew Ruffell <msr50@uclive.ac.nz>
 - Created dapper-settings
