@@ -155,6 +155,21 @@ export MANPAGER="/usr/bin/most -s"
 FOE
 
 # ---------------------------------------------
+# Shell Extensions
+# ---------------------------------------------
+
+# Mediaplayer Settings
+
+cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.extensions.mediaplayer.gschema.override << FOE
+[org.gnome.shell.extensions.mediaplayer]
+indicator-position='right'
+position=true
+status-size=300
+status-text='{trackTitle} - {trackArtist}'
+volume=false
+FOE
+
+# ---------------------------------------------
 # Shell
 # ---------------------------------------------
 
@@ -162,7 +177,7 @@ FOE
 
 cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
-enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info']
 favorite-apps=['firefox-hardened.desktop', 'firefox.desktop', 'mozilla-thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop', 'gnome-music.desktop', 'liferea.desktop', 'anaconda.desktop']
 FOE
 
