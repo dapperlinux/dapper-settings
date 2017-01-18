@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    4
+Release:    5
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -34,11 +34,26 @@ sh %{_sourcedir}/dapper-settings.sh %{buildroot} %{_datadir} %{_sysconfdir}
 rm -rf %{buildroot}
 
 %pre
+# Grsecurity sets gid 1001 to allow access to /proc
+/usr/bin/getent group proc_access || /usr/sbin/groupadd -g 1001 proc_access
 
 %post
 # reload changes
 glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null
 dconf update
+
+%posttrans
+#polkitd needs to access /proc to function
+usermod -aG proc_access polkitd
+systemctl restart polkit
+
+# Remove annoying icons
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
+
+old_icon='Icon=anaconda'
+new_icon='Icon=/usr/share/icons/Fedora/scalable/apps/anaconda.svg'
+sed -ie "s%$old_icon%$new_icon%g" /usr/share/applications/anaconda.desktop
 
 %postun
 # reload changes
