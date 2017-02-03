@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    5
+Release:    6
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -50,10 +50,6 @@ systemctl restart polkit
 # Remove annoying icons
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
-
-old_icon='Icon=anaconda'
-new_icon='Icon=/usr/share/icons/Fedora/scalable/apps/anaconda.svg'
-sed -ie "s%$old_icon%$new_icon%g" /usr/share/applications/anaconda.desktop
 
 %postun
 # reload changes
