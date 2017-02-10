@@ -32,6 +32,17 @@ geometry="704x402+23+15"
 FOE
 
 # ---------------------------------------------
+# GTK
+# ---------------------------------------------
+
+# Sort Folders Before Icons
+
+cat >> $buildroot$datadir/glib-2.0/schemas/org.gtk.settings.file-chooser.gschema.override << FOE
+[org.gtk.Settings.FileChooser]
+sort-directories-first=true
+FOE
+
+# ---------------------------------------------
 # Evince
 # ---------------------------------------------
 

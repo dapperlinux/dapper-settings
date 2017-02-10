@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    6
+Release:    7
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -50,6 +50,9 @@ systemctl restart polkit
 # Remove annoying icons
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
+
+# Fin Nautilus Icon
+ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Nautilus.svg
 
 %postun
 # reload changes
