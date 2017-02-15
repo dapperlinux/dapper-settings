@@ -159,6 +159,12 @@ old-files-age=1
 report-technical-problems=false
 FOE
 
+# Set date and time correctly when internet access is present
+cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.datetime.gschema.override << FOE
+[org.gnome.desktop.datetime]
+automatic-timezone=true
+FOE
+
 # Set most as Manpage Provider for Colour Manpages
 
 cat >> $buildroot$systemconfdir/profile.d/man.sh << FOE

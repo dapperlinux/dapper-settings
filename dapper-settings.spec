@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    7
+Release:    8
 
 Group:      System Environment/Base
 License:    GPLv3+
