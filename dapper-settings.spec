@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    9
+Release:    10
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -48,6 +48,7 @@ usermod -aG proc_access polkitd
 systemctl restart polkit
 
 # Remove annoying icons
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/emoji-picker.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
 
