@@ -206,7 +206,7 @@ FOE
 cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'firewall@subgraph.com', 'ozshell@subgraph.com']
-favorite-apps=['firefox-hardened.desktop', 'firefox.desktop', 'mozilla-thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop', 'gnome-music.desktop', 'liferea.desktop']
+favorite-apps=['dapper-hardened-browser.desktop', 'firefox.desktop', 'mozilla-thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop', 'gnome-music.desktop', 'liferea.desktop']
 FOE
 
 # Set Custom Shell Theme
