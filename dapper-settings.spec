@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    11
+Release:    13
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -27,6 +27,7 @@ mkdir -p %{buildroot}%{_datadir}/glib-2.0/schemas
 mkdir -p %{buildroot}%{_datadir}/gtk-3.0
 mkdir -p %{buildroot}%{_sysconfdir}/fonts
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d
+mkdir -p %{buildroot}%{_sysconfdir}/gdm/PostLogin
 
 sh %{_sourcedir}/dapper-settings.sh %{buildroot} %{_datadir} %{_sysconfdir}
 
@@ -55,6 +56,12 @@ sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
 # Fin Nautilus Icon
 ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Nautilus.svg
 
+# Make sure XServer gets used as default
+sed -i -e "/\[daemon\]/a WaylandEnable=false" /etc/gdm/custom.conf
+
+# Set Postlogin script as executable
+chmod +x %{_sysconfdir}/gdm/PostLogin/Default
+
 %postun
 # reload changes
 glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null
@@ -66,6 +73,7 @@ dconf update
 %{_datadir}/gtk-3.0/gtk.css
 %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/profile.d/man.sh
+%{_sysconfdir}/gdm/PostLogin/Default
 
 %changelog
 * Fri Nov  4 2016 Matthew Ruffell <msr50@uclive.ac.nz>

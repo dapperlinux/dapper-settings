@@ -183,6 +183,16 @@ export MANPAGER="/usr/bin/most -s"
 FOE
 
 # ---------------------------------------------
+# Oz
+# ---------------------------------------------
+cat >> $buildroot$systemconfdir/gdm/PostLogin/Default << FOE
+#!/bin/sh
+mkdir -p /media/$USER
+usermod -aG xpra $USER
+mkdir -p /run/resolvconf
+FOE
+
+# ---------------------------------------------
 # Shell Extensions
 # ---------------------------------------------
 
