@@ -1,12 +1,13 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    13
+Release:    14
 
 Group:      System Environment/Base
 License:    GPLv3+
 Url:        http://github.com/dapperlinux/dapper-settings
 Source0:    dapper-settings.sh
+Source1:    Default
 BuildArch:  noarch
 
 Requires(post):   glib2 dconf
@@ -29,7 +30,14 @@ mkdir -p %{buildroot}%{_sysconfdir}/fonts
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d
 mkdir -p %{buildroot}%{_sysconfdir}/gdm/PostLogin
 
+# Execute master script to make all config files
 sh %{_sourcedir}/dapper-settings.sh %{buildroot} %{_datadir} %{_sysconfdir}
+
+# Move the PostLogin script into place
+cp %{SOURCE1} %{buildroot}%{_sysconfdir}/gdm/PostLogin
+
+# Set Postlogin script as executable
+chmod +x %{buildroot}%{_sysconfdir}/gdm/PostLogin/Default
 
 %clean
 rm -rf %{buildroot}
@@ -58,9 +66,6 @@ ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/N
 
 # Make sure XServer gets used as default
 sed -i -e "/\[daemon\]/a WaylandEnable=false" /etc/gdm/custom.conf
-
-# Set Postlogin script as executable
-chmod +x %{_sysconfdir}/gdm/PostLogin/Default
 
 %postun
 # reload changes
