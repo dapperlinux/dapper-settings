@@ -2,3 +2,27 @@
 mkdir -p /media/$USER
 usermod -aG xpra $USER
 mkdir -p /run/resolvconf
+
+mkdir -p /home/$USER/.mozilla/firefox
+mkdir -p /home/$USER/.mozilla/firefox/gg7wwwv5.default
+mkdir -p /home/$USER/.mozilla/firefox/ab1qwer6.dapper
+
+cat >> /home/$USER/.mozilla/firefox/profiles.ini << EOF
+[General]
+StartWithLastProfile=1
+
+[Profile0]
+Name=default
+IsRelative=1
+Path=gg7wwwv5.default
+Default=1
+
+[Profile1]
+Name=dapper
+IsRelative=1
+Path=ab1qwer6.dapper
+EOF
+
+cp /lib64/dapper-hardened-browser/defaults/profile/stylish.sqlite /home/$USER/.mozilla/firefox/ab1qwer6.dapper/
+
+chown -R $USER:$USER /home/$USER/.mozilla
