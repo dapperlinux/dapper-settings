@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    15
+Release:    16
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -52,11 +52,12 @@ glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null
 dconf update
 
 %posttrans
-#polkitd needs to access /proc to function
+# polkitd needs to access /proc to function
 usermod -aG proc_access polkitd
 systemctl restart polkit
 
 # Remove annoying icons
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/dnssec-trigger-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/emoji-picker.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
@@ -66,6 +67,9 @@ ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/N
 
 # Make sure XServer gets used as default
 sed -i -e "/\[daemon\]/a WaylandEnable=false" /etc/gdm/custom.conf
+
+# Enable DNSSEC through NetworkManager
+sh -c 'echo "dns=unbound" >> /etc/NetworkManager/NetworkManager.conf'
 
 %postun
 # reload changes
