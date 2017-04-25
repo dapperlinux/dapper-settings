@@ -1,8 +1,12 @@
 #!/bin/sh
+# Make sure directories needed for Oz are present
 mkdir -p /media/$USER
-usermod -aG xpra $USER
 mkdir -p /run/resolvconf
 
+# Make sure user is in groups required for Oz
+usermod -aG xpra $USER
+
+# Setup Mozilla directories for dual browser profiles
 mkdir -p /home/$USER/.mozilla/firefox
 mkdir -p /home/$USER/.mozilla/firefox/gg7wwwv5.default
 mkdir -p /home/$USER/.mozilla/firefox/ab1qwer6.dapper
@@ -26,3 +30,9 @@ EOF
 cp /lib64/dapper-hardened-browser/defaults/profile/stylish.sqlite /home/$USER/.mozilla/firefox/ab1qwer6.dapper/
 
 chown -R $USER:$USER /home/$USER/.mozilla
+
+# Make sure all binaries are set to correct PaX flags (mostly for updates)
+dapper-paxset
+
+# Make sure all .desktop files are set to use Oz
+dapper-oz-install
