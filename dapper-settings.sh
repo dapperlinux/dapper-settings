@@ -171,6 +171,7 @@ report-technical-problems=false
 FOE
 
 # Set date and time correctly when internet access is present
+
 cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.datetime.gschema.override << FOE
 [org.gnome.desktop.datetime]
 automatic-timezone=true
@@ -180,6 +181,12 @@ FOE
 
 cat >> $buildroot$systemconfdir/profile.d/man.sh << FOE
 export MANPAGER="/usr/bin/most -s"
+FOE
+
+# Fix XPRA OpenGL Issues on Intel Hardware
+
+cat >> $buildroot$systemconfdir/profile.d/xpra.sh << FOE
+export XPRA_OPENGL_DOUBLE_BUFFERED=1
 FOE
 
 # ---------------------------------------------

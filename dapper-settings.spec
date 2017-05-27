@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    19
+Release:    20
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -65,7 +65,7 @@ java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
 rm $java_jconsole
 rm $java_policytool
 
-# Fin Nautilus Icon
+# Fix Nautilus Icon
 ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Nautilus.svg
 
 # Make sure XServer gets used as default
@@ -73,6 +73,9 @@ sed -i -e "/\[daemon\]/a WaylandEnable=false" /etc/gdm/custom.conf
 
 # Enable DNSSEC through NetworkManager
 sh -c 'echo "dns=unbound" >> /etc/NetworkManager/NetworkManager.conf'
+
+# Set Grub to boot the first kernel, not the last saved kernel
+sed -i "s/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g" /etc/default/grub
 
 %postun
 # reload changes
@@ -85,6 +88,7 @@ dconf update
 %{_datadir}/gtk-3.0/gtk.css
 %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/profile.d/man.sh
+%{_sysconfdir}/profile.d/xpra.sh
 %{_sysconfdir}/gdm/PostLogin/Default
 
 %changelog
