@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    20
+Release:    21
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -59,7 +59,9 @@ systemctl restart polkit
 # Remove annoying icons
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/dnssec-trigger-panel.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
-sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra_launcher.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
 rm $java_jconsole
