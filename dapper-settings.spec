@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    25
-Release:    21
+Release:    22
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -64,8 +64,8 @@ sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
 sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
-rm $java_jconsole
-rm $java_policytool
+rm $java_jconsole &> /dev/null || :
+rm $java_policytool &> /dev/null || :
 
 # Fix Nautilus Icon
 ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Nautilus.svg

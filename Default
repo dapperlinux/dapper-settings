@@ -36,3 +36,12 @@ dapper-paxset
 
 # Make sure all .desktop files are set to use Oz
 dapper-oz-install
+
+# Remove annoying xpra icons from shell
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
+sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
+java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
+java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
+rm $java_jconsole &> /dev/null || :
+rm $java_policytool &> /dev/null || :
