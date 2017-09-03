@@ -8,14 +8,14 @@ systemconfdir=$3
 
 # Set the Icon View to Sensible Values
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.nautilus.icon-view.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.nautilus.icon-view.gschema.override << FOE
 [org.gnome.nautilus.icon-view]
 default-zoom-level="standard"
 FOE
 
 # Single Click for Nautilus and hide sidebar
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.nautilus.preferences.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.nautilus.preferences.gschema.override << FOE
 [org.gnome.nautilus.preferences]
 click-policy="single"
 sort-directories-first=true
@@ -24,7 +24,7 @@ FOE
 
 # Window State Perferences
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.nautilus.window-state.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.nautilus.window-state.gschema.override << FOE
 [org.gnome.nautilus.window-state]
 start-with-sidebar=true
 maximized=false
@@ -37,7 +37,7 @@ FOE
 
 # Sort Folders Before Icons
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gtk.settings.file-chooser.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gtk.settings.file-chooser.gschema.override << FOE
 [org.gtk.Settings.FileChooser]
 sort-directories-first=true
 FOE
@@ -45,7 +45,7 @@ FOE
 # ---------------------------------------------
 # Builder
 # ---------------------------------------------
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.builder.editor.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.builder.editor.gschema.override << FOE
 [org.gnome.builder.editor]
 highlight-matching-brackets=true
 show-grid-lines=false
@@ -59,7 +59,7 @@ FOE
 
 # Evince Uses Inverted Colours by Default
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.Evince.Default.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.Evince.Default.gschema.override << FOE
 [org.gnome.Evince.Default]
 inverted-colors=true
 FOE
@@ -70,7 +70,7 @@ FOE
 
 # EOG Hide Sidebar
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.eog.ui.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.eog.ui.gschema.override << FOE
 [org.gnome.eog.ui]
 sidebar=false
 FOE
@@ -79,7 +79,7 @@ FOE
 # Gedit
 # ---------------------------------------------
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.gedit.preferences.editor.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.gedit.preferences.editor.gschema.override << FOE
 [org.gnome.gedit.preferences.editor]
 auto-indent=true
 auto-save=true
@@ -93,7 +93,7 @@ insert-spaces=true
 tabs-size=4
 FOE
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.gedit.preferences.ui.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.gedit.preferences.ui.gschema.override << FOE
 [org.gnome.gedit.preferences.ui]
 side-panel-visible=false
 statusbar-visible=false
@@ -104,7 +104,7 @@ FOE
 # ---------------------------------------------
 
 # Hide Toolbar, Dont Minimise to Tray and Keep Items
-cat >> $buildroot$datadir/glib-2.0/schemas/net.sf.liferea.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_net.sf.liferea.gschema.override << FOE
 [net.sf.liferea]
 disable-toolbar=true
 dont-minimise-to-tray=true
@@ -118,7 +118,7 @@ FOE
 
 # Terminal Hide Menubar
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.Terminal.Legacy.Settings.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.Terminal.Legacy.Settings.gschema.override << FOE
 [org.gnome.Terminal.Legacy.Settings]
 default-show-menubar=false
 FOE
@@ -129,31 +129,31 @@ FOE
 
 # Set the Desktop and Lock Screen Backgrounds
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.background.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.background.gschema.override << FOE
 [org.gnome.desktop.background]
 picture-uri='file://$datadir/backgrounds/dapperlinux/default/ultrahd/dapperlinux.png'
 FOE
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.screensaver.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.screensaver.gschema.override << FOE
 [org.gnome.desktop.screensaver]
 picture-uri='file://$datadir/backgrounds/dapperlinux/default/ultrahd/dapperlinux.png'
 FOE
 
 # Ensure Mouse Scrolling is Correct
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.peripherals.mouse.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.peripherals.mouse.gschema.override << FOE
 [org.gnome.desktop.peripherals.mouse]
 natural-scroll=false
 FOE
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.peripherals.touchpad.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.peripherals.touchpad.gschema.override << FOE
 [org.gnome.desktop.peripherals.touchpad]
 natural-scroll=false
 FOE
 
 # Change Desktop And Theme Settings
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.interface.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.interface.gschema.override << FOE
 [org.gnome.desktop.interface]
 clock-show-date=true
 gtk-theme="dapper-dark"
@@ -162,7 +162,7 @@ FOE
 
 # Clean Up Old Temp Files
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.privacy.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.privacy.gschema.override << FOE
 [org.gnome.desktop.privacy]
 remove-old-temp-files=true
 remove-old-trash-files=true
@@ -172,7 +172,7 @@ FOE
 
 # Set date and time correctly when internet access is present
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.desktop.datetime.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.datetime.gschema.override << FOE
 [org.gnome.desktop.datetime]
 automatic-timezone=true
 FOE
@@ -195,7 +195,7 @@ FOE
 
 # Mediaplayer Settings
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.extensions.mediaplayer.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.extensions.mediaplayer.gschema.override << FOE
 [org.gnome.shell.extensions.mediaplayer]
 indicator-position='right'
 position=true
@@ -210,7 +210,7 @@ FOE
 
 # Set Our Favourite Apps for Gnome-Shell and Enable Extensions
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'firewall@subgraph.com', 'ozshell@subgraph.com']
 favorite-apps=['dapper-hardened-browser.desktop', 'firefox.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'gnome-music.desktop', 'liferea.desktop']
@@ -218,7 +218,7 @@ FOE
 
 # Set Custom Shell Theme
 
-cat >> $buildroot$datadir/glib-2.0/schemas/org.gnome.shell.extensions.user-theme.gschema.override << FOE
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.extensions.user-theme.gschema.override << FOE
 [org.gnome.shell.extensions.user-theme]
 name="dapper-dark"
 FOE

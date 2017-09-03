@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Make sure directories needed for Oz are present
 mkdir -p /media/$USER
 mkdir -p /run/resolvconf
@@ -37,11 +37,25 @@ dapper-paxset
 # Make sure all .desktop files are set to use Oz
 dapper-oz-install
 
-# Remove annoying xpra icons from shell
-sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
-sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
-sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
+if [ -e /usr/share/applications/xpra-launcher.desktop ]
+then
+    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
+fi
+if [ -e /usr/share/applications/xpra-browser.desktop ]
+then
+    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
+fi
+if [ -e /usr/share/applications/xpra.desktop ]
+then
+    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
+fi
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
-rm $java_jconsole &> /dev/null || :
-rm $java_policytool &> /dev/null || :
+if [ -e $java_jconsole ]
+then
+    rm $java_jconsole &> /dev/null || :
+fi
+if [ -e $java_policytool ]
+then
+    rm $java_policytool &> /dev/null || :
+fi
