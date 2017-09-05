@@ -30,6 +30,10 @@ if [ -e /usr/share/applications/xpra.desktop ]
 then
     sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
 fi
+if [ -e /usr/share/applications/chkrootkit.desktop ]
+then
+    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/chkrootkit.desktop'
+fi
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
 if [ -e $java_jconsole ]
