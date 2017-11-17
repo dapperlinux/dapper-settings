@@ -183,12 +183,6 @@ cat >> $buildroot$systemconfdir/profile.d/man.sh << FOE
 export MANPAGER="/usr/bin/most -s"
 FOE
 
-# Fix XPRA OpenGL Issues on Intel Hardware
-
-cat >> $buildroot$systemconfdir/profile.d/xpra.sh << FOE
-export XPRA_OPENGL_DOUBLE_BUFFERED=1
-FOE
-
 # ---------------------------------------------
 # Shell Extensions
 # ---------------------------------------------
@@ -213,7 +207,7 @@ FOE
 
 cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
-enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'firewall@subgraph.com', 'ozshell@subgraph.com']
+enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info']
 favorite-apps=['dapper-hardened-browser.desktop', 'firefox.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'gnome-music.desktop', 'net.sourceforge.liferea.desktop']
 FOE
 

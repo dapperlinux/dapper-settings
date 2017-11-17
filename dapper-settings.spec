@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
-Version:    26
-Release:    6
+Version:    27
+Release:    1
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -69,11 +69,13 @@ dconf update
 %{_datadir}/gtk-3.0/gtk.css
 %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/profile.d/man.sh
-%{_sysconfdir}/profile.d/xpra.sh
 %{_sysconfdir}/gdm/PostLogin/Default
 %{_bindir}/%{name}-update
 
 %changelog
+* Fri Nov 17 2017 Matthew Ruffell <msr50@uclive.ac.nz>
+- Updating for DL27
+
 * Sun Sep  3 2017 Matthew Ruffell <msr50@uclive.ac.nz>
 - Splitting posttrans into new dapper-settings-update script and adding existance checks
 

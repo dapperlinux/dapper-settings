@@ -1,6 +1,9 @@
 #!/bin/bash
 # Small settings tweaks for Dapper Linux
 
+# Set Bubblewrap setuid as we do not enable user namespaces
+chmod u+s /usr/bin/bwrap
+
 # reload gsettings changes
 glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null
 dconf update
@@ -17,18 +20,6 @@ fi
 if [ -e /usr/share/applications/lash-panel.desktop ]
 then
     sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
-fi
-if [ -e /usr/share/applications/xpra-launcher.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
-fi
-if [ -e /usr/share/applications/xpra-browser.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
-fi
-if [ -e /usr/share/applications/xpra.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
 fi
 if [ -e /usr/share/applications/chkrootkit.desktop ]
 then
@@ -60,12 +51,6 @@ if [ -e /usr/share/icons/Numix-Circle/48/apps/terminix.svg ]
 then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/terminix.svg /usr/share/icons/Numix-Circle/48/apps/com.gexperts.Tilix.svg
 fi
-
-# Make sure XServer gets used as default
-#if [ -e /etc/gdm/custom.conf ]
-#then
-#   sed -i "s/#WaylandEnable=false/WaylandEnable=false/g" /etc/gdm/custom.conf
-#fi
 
 # Enable DNSSEC through NetworkManager
 if [ -e /etc/NetworkManager/NetworkManager.conf ]

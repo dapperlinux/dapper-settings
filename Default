@@ -1,54 +1,5 @@
 #!/bin/bash
-# Make sure directories needed for Oz are present
-mkdir -p /media/$USER
-mkdir -p /run/resolvconf
 
-# Make sure user is in groups required for Oz
-usermod -aG xpra $USER
-
-# Setup Mozilla directories for dual browser profiles
-mkdir -p /home/$USER/.mozilla/firefox
-mkdir -p /home/$USER/.mozilla/firefox/gg7wwwv5.default
-mkdir -p /home/$USER/.mozilla/firefox/ab1qwer6.dapper
-
-cat >> /home/$USER/.mozilla/firefox/profiles.ini << EOF
-[General]
-StartWithLastProfile=1
-
-[Profile0]
-Name=default
-IsRelative=1
-Path=gg7wwwv5.default
-Default=1
-
-[Profile1]
-Name=dapper
-IsRelative=1
-Path=ab1qwer6.dapper
-EOF
-
-cp /lib64/dapper-hardened-browser/defaults/profile/stylish.sqlite /home/$USER/.mozilla/firefox/ab1qwer6.dapper/
-
-chown -R $USER:$USER /home/$USER/.mozilla
-
-# Make sure all binaries are set to correct PaX flags (mostly for updates)
-dapper-paxset
-
-# Make sure all .desktop files are set to use Oz
-dapper-oz-install
-
-if [ -e /usr/share/applications/xpra-launcher.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-launcher.desktop'
-fi
-if [ -e /usr/share/applications/xpra-browser.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra-browser.desktop'
-fi
-if [ -e /usr/share/applications/xpra.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/xpra.desktop'
-fi
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
 if [ -e $java_jconsole ]
