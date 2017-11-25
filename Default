@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Delete annoying Java Icons
 java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
 java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
 if [ -e $java_jconsole ]
@@ -9,4 +10,40 @@ fi
 if [ -e $java_policytool ]
 then
     rm $java_policytool &> /dev/null || :
+fi
+
+# Move Calculator to Utilities folder
+if [ -e /usr/share/applications/org.gnome.Calculator.desktop ]
+then
+    sed -i "s/Categories=GNOME;GTK;Utility;Calculator;/Categories=GNOME;GTK;Utility;X-GNOME-Utilities;Calculator;/g" /usr/share/applications/org.gnome.Calculator.desktop
+fi
+
+# Move EOG to Utilities folder
+if [ -e /var/lib/flatpak/exports/share/applications/org.gnome.eog.desktop ]
+then
+    sed -i "s/Categories=GNOME;GTK;Graphics;2DGraphics;RasterGraphics;Viewer;/Categories=GNOME;GTK;Graphics;2DGraphics;RasterGraphics;X-GNOME-Utilities;Viewer;/g" /var/lib/flatpak/exports/share/applications/org.gnome.eog.desktop
+fi
+
+# Move Evince to Utilities folder
+if [ -e /var/lib/flatpak/exports/share/applications/org.gnome.Evince.desktop ]
+then
+    sed -i "s/Categories=GNOME;GTK;Office;Viewer;Graphics;2DGraphics;VectorGraphics;/Categories=GNOME;GTK;Office;Viewer;Graphics;2DGraphics;X-GNOME-Utilities;VectorGraphics;/g" /var/lib/flatpak/exports/share/applications/org.gnome.Evince.desktop
+fi
+
+# Hide Libreoffice Start Center
+if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-startcenter.desktop ]
+then
+    sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-startcenter.desktop
+fi
+
+# Hide Libreoffice Base
+if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-base.desktop ]
+then
+    sed -i "/Terminal=false/aNoDisplay=true" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-base.desktop
+fi
+
+# Hide Libreoffice Math
+if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop ]
+then
+    sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop
 fi

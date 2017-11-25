@@ -1,25 +1,38 @@
 #!/bin/bash
 # Small settings tweaks for Dapper Linux
 
-# Set Bubblewrap setuid as we do not enable user namespaces
-chmod u+s /usr/bin/bwrap
-
-# reload gsettings changes
+# Reload gsettings changes
 glib-compile-schemas /usr/share/glib-2.0/schemas 2>/dev/null
 dconf update
 
-# polkitd needs to access /proc to function
-usermod -aG proc_access polkitd
-systemctl restart polkit
+# ---------------------------------------------
+# System Config
+# ---------------------------------------------
 
-# Remove annoying icons
+# Enable DNSSEC through NetworkManager
+if [ -e /etc/NetworkManager/NetworkManager.conf ]
+then
+    sh -c 'echo "dns=unbound" >> /etc/NetworkManager/NetworkManager.conf'
+fi
+
+# Set Grub to boot the first kernel, not the last saved kernel
+if [ -e /etc/default/grub ]
+then
+    sed -i "s/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g" /etc/default/grub
+fi
+
+# Set Bubblewrap setuid as we do not enable user namespaces
+if [ -e /usr/bin/bwrap ]
+then
+	chmod u+s /usr/bin/bwrap
+fi
+
+# ---------------------------------------------
+# Remove Unnecessary Icons
+# ---------------------------------------------
 if [ -e /usr/share/applications/dnssec-trigger-panel.desktop ]
 then
     sh -c 'echo "NoDisplay=true" >> /usr/share/applications/dnssec-trigger-panel.desktop'
-fi
-if [ -e /usr/share/applications/lash-panel.desktop ]
-then
-    sh -c 'echo "NoDisplay=true" >> /usr/share/applications/lash-panel.desktop'
 fi
 if [ -e /usr/share/applications/chkrootkit.desktop ]
 then
@@ -35,31 +48,153 @@ if [ -e $java_policytool ]
 then
     rm $java_policytool &> /dev/null || :
 fi
-if [ -e /usr/share/applications/org.gnome.Calculator.desktop ]
+
+# ---------------------------------------------
+# Fix Icon Theme for Flatpak Apps
+# ---------------------------------------------
+
+# Evince
+if [ -e /usr/share/icons/Numix-Circle/48/apps/evince.svg ]
 then
-    sed -i "s/Categories=GNOME;GTK;Utility;Calculator;/Categories=GNOME;GTK;Utility;Calculator;X-GNOME-Utilities;/g" /usr/share/applications/org.gnome.Calculator.desktop
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/evince.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Evince.svg
 fi
 
-# Fix Nautilus Icon
+# Evolution
+if [ -e /usr/share/icons/Numix-Circle/48/apps/evolution.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/evolution.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Evolution.svg
+fi
+
+# Eye of Gnome
+if [ -e /usr/share/icons/Numix-Circle/48/apps/eog.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/eog.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.eog.svg
+fi
+
+# Firefox
+if [ -e /usr/share/icons/Numix-Circle/48/apps/firefox.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/firefox.svg /usr/share/icons/Numix-Circle/48/apps/org.mozilla.Firefox.svg
+fi
+
+# Gedit
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gedit.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gedit.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.gedit.svg
+fi
+
+# Gimp
+ln -s org.gimp.GIMP
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gimp.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gimp.svg /usr/share/icons/Numix-Circle/48/apps/org.gimp.GIMP.svg
+fi
+
+# Gnome-Builder
+# Already exists
+
+# Gnome-Music
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gnome-music.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gnome-music.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Music.svg
+fi
+
+# Inkscape
+if [ -e /usr/share/icons/Numix-Circle/48/apps/inkscape.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/inkscape.svg /usr/share/icons/Numix-Circle/48/apps/org.inkscape.Inkscape.svg
+fi
+
+# Krita
+if [ -e /usr/share/icons/Numix-Circle/48/apps/krita.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/krita.svg /usr/share/icons/Numix-Circle/48/apps/org.kde.krita.svg
+fi
+
+# Libreoffice Start Center
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-startcenter.svg
+fi
+
+# Libreoffice Base
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-base.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-base.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-base.svg
+fi
+
+# Libreoffice Calc
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-calc.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-calc.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-calc.svg
+fi
+
+# Libreoffice Draw
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-draw.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-draw.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-draw.svg
+fi
+
+# Libreoffice Impress
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-impress.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-impress.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-impress.svg
+fi
+
+# Libreoffice Math
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-math.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-math.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-math.svg
+fi
+
+# Libreoffice Writer
+if [ -e /usr/share/icons/Numix-Circle/48/apps/libreoffice-writer.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/libreoffice-writer.svg /usr/share/icons/Numix-Circle/48/apps/org.libreoffice.LibreOffice-writer.svg
+fi
+
+# Liferea
+if [ -e /usr/share/icons/Numix-Circle/48/apps/liferea.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/liferea.svg /usr/share/icons/Numix-Circle/48/apps/net.sourceforge.liferea.svg
+fi
+
+# Lyx
+
+# Nautilus
 if [ -e /usr/share/icons/Numix-Circle/48/apps/file-manager.svg ]
 then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/file-manager.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Nautilus.svg
 fi
 
-# Fix Tilix Icon
+# Pdfshuffler
+
+# Polari
+# Already exists
+
+# Scribus
+if [ -e /usr/share/icons/Numix-Circle/48/apps/scribus.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/scribus.svg /usr/share/icons/Numix-Circle/48/apps/net.scribus.Scribus.svg
+fi
+
+# Totem
+# Already exists
+
+# Tilix
 if [ -e /usr/share/icons/Numix-Circle/48/apps/terminix.svg ]
 then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/terminix.svg /usr/share/icons/Numix-Circle/48/apps/com.gexperts.Tilix.svg
 fi
 
-# Enable DNSSEC through NetworkManager
-if [ -e /etc/NetworkManager/NetworkManager.conf ]
+# Transmission
+if [ -e /usr/share/icons/Numix-Circle/48/apps/transmission.svg ]
 then
-    sh -c 'echo "dns=unbound" >> /etc/NetworkManager/NetworkManager.conf'
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/transmission.svg /usr/share/icons/Numix-Circle/48/apps/com.transmissionbt.Transmission.svg
 fi
 
-# Set Grub to boot the first kernel, not the last saved kernel
-if [ -e /etc/default/grub ]
+# VLC
+if [ -e /usr/share/icons/Numix-Circle/48/apps/vlc.svg ]
 then
-    sed -i "s/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/g" /etc/default/grub
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/vlc.svg /usr/share/icons/Numix-Circle/48/apps/org.videolan.VLC.svg
 fi

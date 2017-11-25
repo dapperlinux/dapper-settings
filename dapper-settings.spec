@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
 Version:    27
-Release:    1
+Release:    2
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -28,6 +28,7 @@ Dapper Linux feel modern.
 mkdir -p %{buildroot}%{_datadir}/glib-2.0/schemas
 mkdir -p %{buildroot}%{_datadir}/gtk-3.0
 mkdir -p %{buildroot}%{_sysconfdir}/fonts
+mkdir -p %{buildroot}%{_sysconfdir}/modules-load.d
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d
 mkdir -p %{buildroot}%{_sysconfdir}/gdm/PostLogin
 
@@ -47,8 +48,6 @@ install -m 755 %{SOURCE2} %{buildroot}%{_bindir}
 rm -rf %{buildroot}
 
 %pre
-# Grsecurity sets gid 1001 to allow access to /proc
-/usr/bin/getent group proc_access || /usr/sbin/groupadd -g 1001 proc_access
 
 %post
 # reload changes
@@ -69,6 +68,7 @@ dconf update
 %{_datadir}/gtk-3.0/gtk.css
 %{_sysconfdir}/fonts/local.conf
 %{_sysconfdir}/profile.d/man.sh
+%{_sysconfdir}/modules-load.d/fuse.conf
 %{_sysconfdir}/gdm/PostLogin/Default
 %{_bindir}/%{name}-update
 
