@@ -12,6 +12,10 @@ then
     rm $java_policytool &> /dev/null || :
 fi
 
+# Set Dark theme on flatpaks
+mkdir -p /home/$USER/.themes
+cp -r /usr/share/themes/dapper-dark /home/$USER/.themes/
+
 # Move Calculator to Utilities folder
 if [ -e /usr/share/applications/org.gnome.Calculator.desktop ]
 then
@@ -46,4 +50,16 @@ fi
 if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop ]
 then
     sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop
+fi
+
+# Rename Krita
+if [ -e /var/lib/flatpak/exports/share/applications/org.kde.krita.desktop ]
+then
+    sed -i "s/(Nightly) Krita/Krita/g" /var/lib/flatpak/exports/share/applications/org.kde.krita.desktop
+fi
+
+# Rename Scribus
+if [ -e /var/lib/flatpak/exports/share/applications/net.scribus.Scribus.desktop ]
+then
+    sed -i "s/(Nightly) Scribus/Scribus/g" /var/lib/flatpak/exports/share/applications/net.scribus.Scribus.desktop
 fi
