@@ -177,6 +177,12 @@ cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.datetime.gschema
 automatic-timezone=true
 FOE
 
+# Fix Warning on Tilix
+cat >> $buildroot$datadir/glib-2.0/schemas/90_com.gexperts.Tilix.Settings.gschema.override << FOE
+[com.gexperts.Tilix.Settings]
+warn-vte-config-issue=false
+FOE
+
 # ---------------------------------------------
 # System Modifications
 # ---------------------------------------------

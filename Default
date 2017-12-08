@@ -35,6 +35,12 @@ then
 fi
 
 # Hide Libreoffice Start Center
+if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice.desktop ]
+then
+    sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice.desktop
+fi
+
+# Hide Libreoffice Start Center
 if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-startcenter.desktop ]
 then
     sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-startcenter.desktop

@@ -178,6 +178,12 @@ then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/scribus.svg /usr/share/icons/Numix-Circle/48/apps/net.scribus.Scribus.svg
 fi
 
+# Spotify
+if [ -e /usr/share/icons/Numix-Circle/48/apps/spotify.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/spotify.svg /usr/share/icons/Numix-Circle/48/apps/com.spotify.Client.svg
+fi
+
 # Totem
 # Already exists
 
