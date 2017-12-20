@@ -12,10 +12,6 @@ then
     rm $java_policytool &> /dev/null || :
 fi
 
-# Set Dark theme on flatpaks
-mkdir -p /home/$USER/.themes
-cp -r /usr/share/themes/dapper-dark /home/$USER/.themes/
-
 # Move Calculator to Utilities folder
 if [ -e /usr/share/applications/org.gnome.Calculator.desktop ]
 then
