@@ -13,9 +13,9 @@ then
 fi
 
 # Move Calculator to Utilities folder
-if [ -e /usr/share/applications/org.gnome.Calculator.desktop ]
+if [ -e /var/lib/flatpak/exports/share/applications/org.gnome.Calculator.desktop ]
 then
-    sed -i "s/Categories=GNOME;GTK;Utility;Calculator;/Categories=GNOME;GTK;Utility;X-GNOME-Utilities;Calculator;/g" /usr/share/applications/org.gnome.Calculator.desktop
+    sed -i "s/Categories=GNOME;GTK;Utility;Calculator;/Categories=GNOME;GTK;Utility;X-GNOME-Utilities;Calculator;/g" /var/lib/flatpak/exports/share/applications/org.gnome.Calculator.desktop
 fi
 
 # Move EOG to Utilities folder
@@ -52,12 +52,6 @@ fi
 if [ -e /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop ]
 then
     sed -i "s/NoDisplay=false/NoDisplay=true/g" /var/lib/flatpak/exports/share/applications/org.libreoffice.LibreOffice-math.desktop
-fi
-
-# Rename Krita
-if [ -e /var/lib/flatpak/exports/share/applications/org.kde.krita.desktop ]
-then
-    sed -i "s/(Nightly) Krita/Krita/g" /var/lib/flatpak/exports/share/applications/org.kde.krita.desktop
 fi
 
 # Rename Scribus

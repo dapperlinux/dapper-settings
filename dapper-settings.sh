@@ -225,7 +225,7 @@ FOE
 cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info']
-favorite-apps=['com.dapperlinux.Dapper-Hardened-Browser.desktop', 'org.mozilla.Firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'org.gnome.Music.desktop', 'net.sourceforge.liferea.desktop']
+favorite-apps=['com.dapperlinux.Dapper-Hardened-Browser.desktop', 'org.mozilla.Firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'org.gnome.Music.desktop', 'org.gnome.FeedReader.desktop']
 FOE
 
 # Set Custom Shell Theme
