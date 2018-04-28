@@ -18,7 +18,6 @@ FOE
 cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.nautilus.preferences.gschema.override << FOE
 [org.gnome.nautilus.preferences]
 click-policy="single"
-sort-directories-first=true
 search-filter-time-type="last_modified"
 FOE
 
@@ -225,7 +224,7 @@ FOE
 cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.shell.gschema.override << FOE
 [org.gnome.shell]
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info']
-favorite-apps=['com.dapperlinux.Dapper-Hardened-Browser.desktop', 'org.mozilla.Firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'org.gnome.Music.desktop', 'org.gnome.FeedReader.desktop']
+favorite-apps=['com.dapperlinux.Dapper-Hardened-Browser.desktop', 'org.mozilla.Firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.gedit.desktop', 'com.gexperts.Tilix.desktop', 'org.gnome.Music.desktop', 'net.sourceforge.liferea.desktop']
 FOE
 
 # Set Custom Shell Theme

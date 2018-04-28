@@ -1,16 +1,8 @@
 #!/bin/bash
 
 # Delete annoying Java Icons
-java_jconsole=/usr/share/applications/java-1.8.0-openjdk-*-jconsole.desktop
-java_policytool=/usr/share/applications/java-1.8.0-openjdk-*-policytool.desktop
-if [ -e $java_jconsole ]
-then
-    rm $java_jconsole &> /dev/null || :
-fi
-if [ -e $java_policytool ]
-then
-    rm $java_policytool &> /dev/null || :
-fi
+java_apps=/usr/share/applications/java-*
+rm $java_apps &> /dev/null || :
 
 # Move Calculator to Utilities folder
 if [ -e /var/lib/flatpak/exports/share/applications/org.gnome.Calculator.desktop ]
