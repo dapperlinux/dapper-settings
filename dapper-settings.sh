@@ -199,6 +199,14 @@ cat >> $buildroot$systemconfdir/modules-load.d/fuse.conf << FOE
 fuse
 FOE
 
+# Disable gnome-initial-setup since Calamares features user creation
+cat >> /etc/sysconfig/anaconda << FOE
+# Disable gnome-initial-setup
+
+[General]
+post_install_tools_disabled=1
+FOE
+
 # ---------------------------------------------
 # Shell Extensions
 # ---------------------------------------------
