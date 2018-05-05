@@ -1,7 +1,7 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
-Version:    27
-Release:    8
+Version:    28
+Release:    1
 
 Group:      System Environment/Base
 License:    GPLv3+
@@ -73,6 +73,9 @@ dconf update
 %{_bindir}/%{name}-update
 
 %changelog
+* Sat May  5 2018 Matthew Ruffell <msr50@uclive.ac.nz>
+- Updating for DL28
+
 * Fri Nov 17 2017 Matthew Ruffell <msr50@uclive.ac.nz>
 - Updating for DL27
 
