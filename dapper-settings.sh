@@ -123,6 +123,16 @@ default-show-menubar=false
 FOE
 
 # ---------------------------------------------
+# Tilix
+# ---------------------------------------------
+
+# Fix Warning on Tilix
+cat >> $buildroot$datadir/glib-2.0/schemas/90_com.gexperts.Tilix.Settings.gschema.override << FOE
+[com.gexperts.Tilix.Settings]
+warn-vte-config-issue=false
+FOE
+
+# ---------------------------------------------
 # Desktop
 # ---------------------------------------------
 
@@ -176,10 +186,23 @@ cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.datetime.gschema
 automatic-timezone=true
 FOE
 
-# Fix Warning on Tilix
-cat >> $buildroot$datadir/glib-2.0/schemas/90_com.gexperts.Tilix.Settings.gschema.override << FOE
-[com.gexperts.Tilix.Settings]
-warn-vte-config-issue=false
+# Set up App folders in overview
+
+cat >> $buildroot$datadir/glib-2.0/schemas/90_org.gnome.desktop.app-folders.gschema.override << FOE
+[org.gnome.desktop.app-folders]
+folder-children="['Utilities', 'Sundry']"
+
+[org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities]
+name='X-GNOME-Utilities.directory'
+translate=true
+categories="['X-GNOME-Utilities']"
+apps="['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop', 'dnssec-trigger-panel.desktop', 'chkrootkit.desktop']"
+
+[org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Sundry]
+name='X-GNOME-Sundry.directory'
+translate=true
+categories="['X-GNOME-Sundry']"
+apps="['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.8.0-openjdk-jconsole.desktop', 'java-1.8.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']"
 FOE
 
 # ---------------------------------------------
