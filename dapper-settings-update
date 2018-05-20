@@ -48,6 +48,12 @@ rm $java_apps &> /dev/null || :
 # Fix Icon Theme for Flatpak Apps
 # ---------------------------------------------
 
+# Dconf-editor
+if [ -e /usr/share/icons/Numix-Circle/48/apps/dconf-editor.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/dconf-editor.svg /usr/share/icons/Numix-Circle/48/apps/ca.desrt.dconf-editor.svg
+fi
+
 # Evince
 if [ -e /usr/share/icons/Numix-Circle/48/apps/evince.svg ]
 then
@@ -87,6 +93,12 @@ fi
 
 # Gnome-Builder
 # Already exists
+
+# Gnome-Calculator
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gnome-calculator.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gnome-calculator.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Calculator.svg
+fi
 
 # Gnome-Music
 if [ -e /usr/share/icons/Numix-Circle/48/apps/gnome-music.svg ]
@@ -198,6 +210,12 @@ fi
 if [ -e /usr/share/icons/Numix-Circle/48/apps/transmission.svg ]
 then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/transmission.svg /usr/share/icons/Numix-Circle/48/apps/com.transmissionbt.Transmission.svg
+fi
+
+# Tweak Tool
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gnome-tweak-tool.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gnome-tweak-tool.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.tweaks.svg
 fi
 
 # VLC
