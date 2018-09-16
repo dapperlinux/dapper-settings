@@ -230,6 +230,17 @@ cat >> /etc/sysconfig/anaconda << FOE
 post_install_tools_disabled=1
 FOE
 
+# Enable MAC Address randomisation
+cat >> /etc/NetworkManager/conf.d/00-macrandomize.conf << FOE
+[device]
+wifi.scan-rand-mac-address=yes
+
+[connection]
+wifi.cloned-mac-address=random
+ethernet.cloned-mac-address=random
+connection.stable-id=${CONNECTION}/${BOOT}
+FOE
+
 # ---------------------------------------------
 # Shell Extensions
 # ---------------------------------------------
