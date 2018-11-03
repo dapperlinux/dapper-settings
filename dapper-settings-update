@@ -27,6 +27,12 @@ then
 	chmod u+s /usr/bin/bwrap
 fi
 
+# Set Fedora version for COPR
+if [ -e /etc/dnf/plugins/copr.conf ]
+then
+    sh -c 'echo -e "[main]\ndistribution=Fedora\nreleasever=29" >> /etc/dnf/plugins/copr.conf'
+fi
+
 # ---------------------------------------------
 # Remove Unnecessary Icons
 # ---------------------------------------------
@@ -89,6 +95,12 @@ ln -s org.gimp.GIMP
 if [ -e /usr/share/icons/Numix-Circle/48/apps/gimp.svg ]
 then
     ln -sf /usr/share/icons/Numix-Circle/48/apps/gimp.svg /usr/share/icons/Numix-Circle/48/apps/org.gimp.GIMP.svg
+fi
+
+# Gnome-Boxes
+if [ -e /usr/share/icons/Numix-Circle/48/apps/gnome-boxes.svg ]
+then
+    ln -sf /usr/share/icons/Numix-Circle/48/apps/gnome-boxes.svg /usr/share/icons/Numix-Circle/48/apps/org.gnome.Boxes.svg
 fi
 
 # Gnome-Builder

@@ -1,14 +1,12 @@
 Summary:    Dapper Linux Gnome Settings
 Name:       dapper-settings
-Version:    28
-Release:    6
+Version:    29
+Release:    1
 
 Group:      System Environment/Base
 License:    GPLv3+
 Url:        http://github.com/dapperlinux/dapper-settings
-Source0:    dapper-settings.sh
-Source1:    Default
-Source2:    dapper-settings-update
+Source0:    %{name}-%{version}.tar.xz
 BuildArch:  noarch
 
 Requires(post):   glib2 dconf
@@ -21,6 +19,7 @@ Dapper Settings contains all of the custom Gnome configurations that make
 Dapper Linux feel modern. 
 
 %prep
+%setup -q
 
 %build
 
@@ -33,16 +32,16 @@ mkdir -p %{buildroot}%{_sysconfdir}/profile.d
 mkdir -p %{buildroot}%{_sysconfdir}/gdm/PostLogin
 
 # Execute master script to make all config files
-sh %{_sourcedir}/dapper-settings.sh %{buildroot} %{_datadir} %{_sysconfdir}
+sh dapper-settings.sh %{buildroot} %{_datadir} %{_sysconfdir}
 
 # Move the PostLogin script into place
-cp %{SOURCE1} %{buildroot}%{_sysconfdir}/gdm/PostLogin
+cp Default %{buildroot}%{_sysconfdir}/gdm/PostLogin
 
 # Set Postlogin script as executable
 chmod +x %{buildroot}%{_sysconfdir}/gdm/PostLogin/Default
 
 mkdir -p %{buildroot}%{_bindir}
-install -m 755 %{SOURCE2} %{buildroot}%{_bindir}
+install -m 755 dapper-settings-update %{buildroot}%{_bindir}
 
 %clean
 rm -rf %{buildroot}
@@ -73,6 +72,9 @@ dconf update
 %{_bindir}/%{name}-update
 
 %changelog
+* Sat Nov  3 2018 Matthew Ruffell <msr50@uclive.ac.nz>
+- Updating for DL29
+
 * Sat May  5 2018 Matthew Ruffell <msr50@uclive.ac.nz>
 - Updating for DL28
 
